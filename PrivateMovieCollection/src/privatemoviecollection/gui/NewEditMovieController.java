@@ -9,6 +9,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.ListView;
+import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import privatemoviecollection.be.Category;
@@ -24,9 +26,6 @@ public class NewEditMovieController implements Initializable{
     
     private PrivateMovieCollectionController parent;
     @FXML
-    private ComboBox<Category> genres;
-    private Movie selected = null;
-    @FXML
     private TextField movieNameFld;
     @FXML
     private TextField movieRatingFld;
@@ -39,6 +38,10 @@ public class NewEditMovieController implements Initializable{
     @FXML
     private Button movieCancelBtn;
     private PMCLogic bll;
+    @FXML
+    private ComboBox<Category> genres;
+    private Movie selected = null;
+    private ListView<Category> categories;
     
     public NewEditMovieController(){
         bll = new PMCLogic();
@@ -49,18 +52,17 @@ public class NewEditMovieController implements Initializable{
     }
     
     private void createComboBoxItems(){
-        ObservableList<Category> categoryList =
+        ObservableList<Category> catList =
                 FXCollections.observableArrayList(
-                        bll.getAllCategories()
-                );
-        genres.getItems().addAll(categoryList);
+                bll.getAllCategories());
+        genres.getItems().addAll(catList);
         genres.setPromptText("Select a category");
     }
     
     @FXML
     private void handleSaveMovieButton(ActionEvent e){
         Movie m = new Movie(0, movieNameFld.getText(),
-                (int)Float.parseFloat(movieRatingFld.getText()),
+                Integer.parseInt(movieRatingFld.getText()),
                 movieLastviewFld.getText(),
                 movieFilelinkFld.getText());
         parent.addMovie(m);

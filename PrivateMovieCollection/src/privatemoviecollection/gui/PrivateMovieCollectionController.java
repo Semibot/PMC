@@ -109,19 +109,24 @@ public class PrivateMovieCollectionController implements Initializable{
     @Override
     public void initialize(URL url, ResourceBundle rb){
         try {
-            setImageSearch();
+            //Set image search button
+            Path dir = FileSystems.getDefault().getPath("./src/images/Search-icon.png");
+            Image image = new Image(dir.toUri().toURL().toExternalForm());
+            searchBtn.setGraphic(new ImageView(image));
             
             //Add movie
             String a = "Title \t\t\t\t\t\t\t Rating \t\t\t\t\t Lastview";
             listMovie.add(a);
             List<Movie> listm = bll.getAllMovies();
             listMovie.addAll(listm);
+            movies.getItems().addAll(listMovie);
             
             //Add category
             String b = "Categories";
             listCategory.add(b);
             List<Category> listc = bll.getAllCategories();
             listCategory.addAll(listc);
+            categories.getItems().addAll(listCategory);
             
         }catch (MalformedURLException ex){
             ex.printStackTrace();
@@ -155,12 +160,5 @@ public class PrivateMovieCollectionController implements Initializable{
         Movie selected =
                 movies.getSelectionModel().getSelectedItem();
         openAddEditMovieWindow(e, selected);
-    }
-    
-    @FXML
-    private void setImageSearch() throws MalformedURLException{
-        Path dir = FileSystems.getDefault().getPath("./src/images/Search-icon.png");
-        Image image = new Image(dir.toUri().toURL().toExternalForm());
-        searchBtn.setGraphic(new ImageView(image));
     }
 }

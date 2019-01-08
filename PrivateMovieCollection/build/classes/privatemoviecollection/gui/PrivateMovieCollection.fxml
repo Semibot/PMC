@@ -24,6 +24,6 @@
       <Button layoutX="14.0" layoutY="649.0" mnemonicParsing="false" onAction="#handleAddCategoryButton" prefHeight="43.0" prefWidth="147.0" text="Add" />
       <Button layoutX="174.0" layoutY="649.0" mnemonicParsing="false" onAction="#handleDeleteCategoryButton" prefHeight="43.0" prefWidth="147.0" text="Delete" />
       <TextField fx:id="searchFld" layoutX="872.0" layoutY="22.0" />
-      <Button fx:id="searchBtn" layoutX="1075.0" layoutY="22.0" mnemonicParsing="false" onAction="#setImageSearch" prefHeight="31.0" prefWidth="43.0" />
+      <Button fx:id="searchBtn" layoutX="1075.0" layoutY="22.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="43.0" />
    </children>
 </AnchorPane>
