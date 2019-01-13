@@ -1,5 +1,7 @@
 package privatemoviecollection.be;
 
+import java.util.List;
+
 /**
  *
  * @author DKE
@@ -10,14 +12,20 @@ public class Movie{
     private int rating;
     private String filelink;
     private String lastview;
+    private List<String> categoriesList;
+    
+    public Movie(){
+        
+    }
     
     public Movie(int id, String name, int rating,
-            String lastview, String filelink){
+            String lastview, String filelink, List<String> categoriesList){
         this.id = id;
         this.name = name;
         this.rating = rating;
         this.lastview = lastview;
         this.filelink = filelink;
+        this.categoriesList = categoriesList;
     }
     
     @Override
@@ -64,5 +72,13 @@ public class Movie{
 
     public void setLastview(String lastview){
         this.lastview = lastview;
+    }
+    
+    public List<String> getCategoriesList(){
+        return categoriesList;
+    }
+    
+    public void setCategoriesList(List<String> categoriesList){
+        this.categoriesList = categoriesList;
     }
 }

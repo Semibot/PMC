@@ -2,8 +2,10 @@ package privatemoviecollection.bll;
 
 import java.sql.SQLException;
 import java.util.List;
+import privatemoviecollection.be.CatMovie;
 import privatemoviecollection.be.Category;
 import privatemoviecollection.be.Movie;
+import privatemoviecollection.dal.CatMovieDAO;
 import privatemoviecollection.dal.CategoryDAO;
 import privatemoviecollection.dal.MovieDAO;
 
@@ -61,5 +63,30 @@ public class PMCLogic{
     public List<Category> getAllCategories(){
         CategoryDAO cdao = new CategoryDAO();
         return cdao.getAllCategories();
+    }
+    
+    public CatMovie createCatMovie(CatMovie cm) throws SQLException{
+        CatMovieDAO cmdao = new CatMovieDAO();
+        return cmdao.createCatMovie(0, cm);
+    }
+    
+    public CatMovie getCatMovie(int id){
+        CatMovieDAO cmdao = new CatMovieDAO();
+        return cmdao.getCatMovie(id);
+    }
+    
+    public void updateCatMovie(CatMovie cm) throws SQLException{
+        CatMovieDAO cmdao = new CatMovieDAO();
+        cmdao.updateCatMovie(cm);
+    }
+    
+    public void deleteCatMovie(CatMovie cm) throws SQLException{
+        CatMovieDAO cmdao = new CatMovieDAO();
+        cmdao.deleteCatMovie(cm);
+    }
+    
+    public List<CatMovie> getAllCatMovies(){
+        CatMovieDAO cmdao = new CatMovieDAO();
+        return cmdao.getAllCatMovies();
     }
 }

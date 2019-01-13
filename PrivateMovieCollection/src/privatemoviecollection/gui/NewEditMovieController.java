@@ -1,6 +1,8 @@
 package privatemoviecollection.gui;
 
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -9,8 +11,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.ListView;
-import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import privatemoviecollection.be.Category;
@@ -37,14 +37,17 @@ public class NewEditMovieController implements Initializable{
     private Button movieSaveBtn;
     @FXML
     private Button movieCancelBtn;
+    @FXML
+    private Button addToMovieBtn;
     private PMCLogic bll;
+    private Movie be;
     @FXML
     private ComboBox<Category> genres;
     private Movie selected = null;
-    private ListView<Category> categories;
     
     public NewEditMovieController(){
         bll = new PMCLogic();
+        be = new Movie();
     }
     
     public void setParentWindowController(PrivateMovieCollectionController parent){
@@ -60,11 +63,31 @@ public class NewEditMovieController implements Initializable{
     }
     
     @FXML
+    private void addToMovieBtn(ActionEvent e, Movie selected){
+        List<String> sList = new ArrayList<>();
+        
+        if(selected != null){
+            
+        }
+        for(String s : sList){
+            be.getCategoriesList().add(s + genres.getValue());
+        }
+        
+        parent.getCategoriesInMovie().getItems().clear();
+        parent.getListCatsInMovie().add(be.getCategoriesList());
+        parent.getCategoriesInMovie().getItems().addAll(parent.getListCatsInMovie());
+    }
+    
+    @FXML
     private void handleSaveMovieButton(ActionEvent e){
         Movie m = new Movie(0, movieNameFld.getText(),
                 Integer.parseInt(movieRatingFld.getText()),
+                //String.valueOf((List<String>)genres.getValue()),
                 movieLastviewFld.getText(),
-                movieFilelinkFld.getText());
+                movieFilelinkFld.getText(),
+                (List<String>)genres.getValue()
+                //be.getCategoriesList(genres.getValue())
+        );
         parent.addMovie(m);
         Stage sm = (Stage)movieSaveBtn.getScene().getWindow();
         sm.close();

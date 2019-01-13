@@ -8,6 +8,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -34,13 +35,14 @@ public class MovieDAO{
         
         try(Connection conn = ds.getConnection()){
             String sql = "INSERT INTO Movie(name, rating,"
-                 + " lastview, filelink) VALUES(?,?,?,?)";
+                 + " lastview, filelink, categories) VALUES(?,?,?,?,?)";
             PreparedStatement stmt = conn.prepareStatement(sql,
                     Statement.RETURN_GENERATED_KEYS);
             stmt.setString(1, m.getName());
             stmt.setInt(2, m.getRating());
             stmt.setString(3, m.getLastview());
             stmt.setString(4, m.getFilelink());
+            stmt.setString(5, String.valueOf(m.getCategoriesList()));
             
             int createdRows = stmt.executeUpdate();
             
@@ -73,8 +75,9 @@ public class MovieDAO{
                 int rating = rs.getInt("rating");
                 String listview = rs.getString("listview");
                 String filelink = rs.getString("filelink");
+                String categories = rs.getString("categories");
                 Movie m = new Movie(ids, name, rating,
-                listview, filelink);
+                listview, filelink, Arrays.asList(categories));
                 return m;
             }
         }catch(SQLServerException ex){
@@ -149,8 +152,9 @@ public class MovieDAO{
                 int rating = rs.getInt("rating");
                 String lastview = rs.getString("lastview");
                 String filelink = rs.getString("filelink");
+                String categories = rs.getString("categories");
                 Movie m = new Movie(id, name, rating,
-                        lastview, filelink);
+                        lastview, filelink, Arrays.asList(categories));
                 mov.add(m);
             }
         }catch(SQLServerException ex){

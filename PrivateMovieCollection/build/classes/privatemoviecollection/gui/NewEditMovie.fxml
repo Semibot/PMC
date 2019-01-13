@@ -7,24 +7,25 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="398.0" prefWidth="556.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="privatemoviecollection.gui.NewEditMovieController">
+<AnchorPane id="AnchorPane" prefHeight="384.0" prefWidth="556.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="privatemoviecollection.gui.NewEditMovieController">
    <children>
       <Label layoutX="209.0" layoutY="14.0" text="New / Edit Movie">
          <font>
             <Font size="24.0" />
          </font>
       </Label>
-      <Label layoutX="57.0" layoutY="74.0" text="Name:" />
-      <Label layoutX="56.0" layoutY="127.0" text="Rating:" />
-      <Label layoutX="58.0" layoutY="231.0" text="Lastview:" />
-      <Label layoutX="55.0" layoutY="281.0" text="Filelink:" />
-      <TextField fx:id="movieNameFld" layoutX="142.0" layoutY="69.0" prefHeight="31.0" prefWidth="368.0" />
-      <TextField fx:id="movieRatingFld" layoutX="142.0" layoutY="122.0" prefHeight="31.0" prefWidth="368.0" />
-      <TextField fx:id="movieLastviewFld" layoutX="142.0" layoutY="226.0" prefHeight="31.0" prefWidth="368.0" />
-      <TextField fx:id="movieFilelinkFld" layoutX="142.0" layoutY="276.0" prefHeight="31.0" prefWidth="368.0" />
-      <Button fx:id="movieSaveBtn" layoutX="459.0" layoutY="325.0" mnemonicParsing="false" onAction="#handleSaveMovieButton" text="Save" />
-      <Button fx:id="movieCancelBtn" layoutX="382.0" layoutY="325.0" mnemonicParsing="false" onAction="#handleCancelMovieButton" text="Cancel" />
-      <ComboBox fx:id="genres" layoutX="145.0" layoutY="174.0" prefHeight="31.0" prefWidth="293.0" />
-      <Label layoutX="55.0" layoutY="179.0" text="Category:" />
+      <Label layoutX="41.0" layoutY="74.0" text="Name:" />
+      <Label layoutX="41.0" layoutY="125.0" text="Rating:" />
+      <Label layoutX="42.0" layoutY="231.0" text="Lastview:" />
+      <Label layoutX="41.0" layoutY="276.0" text="Filelink:" />
+      <TextField fx:id="movieNameFld" layoutX="130.0" layoutY="69.0" prefHeight="31.0" prefWidth="380.0" />
+      <TextField fx:id="movieRatingFld" layoutX="130.0" layoutY="120.0" prefHeight="31.0" prefWidth="380.0" />
+      <TextField fx:id="movieLastviewFld" layoutX="130.0" layoutY="226.0" prefHeight="31.0" prefWidth="380.0" />
+      <TextField fx:id="movieFilelinkFld" layoutX="130.0" layoutY="271.0" prefHeight="31.0" prefWidth="380.0" />
+      <Button fx:id="movieSaveBtn" layoutX="459.0" layoutY="313.0" mnemonicParsing="false" onAction="#handleSaveMovieButton" text="Save" />
+      <Button fx:id="movieCancelBtn" layoutX="383.0" layoutY="313.0" mnemonicParsing="false" onAction="#handleCancelMovieButton" text="Cancel" />
+      <ComboBox fx:id="genres" layoutX="130.0" layoutY="175.0" prefHeight="31.0" prefWidth="246.0" />
+      <Label layoutX="40.0" layoutY="180.0" text="Category:" />
+      <Button layoutX="398.0" layoutY="175.0" mnemonicParsing="false" onAction="#addToMovieBtn" text="Add to Movie" />
    </children>
 </AnchorPane>

@@ -8,6 +8,7 @@ import java.nio.file.Path;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.Comparator;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -34,18 +35,34 @@ import privatemoviecollection.bll.PMCLogic;
 public class PrivateMovieCollectionController implements Initializable{
     private ObservableList listMovie = FXCollections.observableArrayList();
     private ObservableList listCategory = FXCollections.observableArrayList();
+    private ObservableList listCatsInMovie = FXCollections.observableArrayList();
     @FXML
     private Button searchBtn;
+    @FXML
+    private Button arrowRightBtn;
     @FXML
     private ListView<Movie> movies;
     @FXML
     private ListView<Category> categories;
+    @FXML
+    private ListView<String> categoriesInMovie;
     private PMCLogic bll;
     @FXML
     private TextField searchFld;
+    private Movie selected = null;
+    private Movie be;
     
     public PrivateMovieCollectionController(){
         bll = new PMCLogic();
+        be = new Movie();
+    }
+    
+    public ListView<String> getCategoriesInMovie(){
+        return categoriesInMovie;
+    }
+    
+    public ObservableList getListCatsInMovie(){
+        return listCatsInMovie;
     }
     
     @FXML
@@ -69,7 +86,7 @@ public class PrivateMovieCollectionController implements Initializable{
             categories.getItems().clear();
             listCategory.addAll(category);
             categories.getItems().addAll(listCategory);
-        } catch (SQLException ex) {
+        }catch (SQLException ex){
             ex.printStackTrace();
         }
     }
@@ -109,10 +126,14 @@ public class PrivateMovieCollectionController implements Initializable{
     @Override
     public void initialize(URL url, ResourceBundle rb){
         try {
-            //Set image search button
+            //Set image on buttons
             Path dir = FileSystems.getDefault().getPath("./src/images/Search-icon.png");
             Image image = new Image(dir.toUri().toURL().toExternalForm());
             searchBtn.setGraphic(new ImageView(image));
+            
+            Path dir1 = FileSystems.getDefault().getPath("./src/images/Arrow-right.png");
+            Image image1 = new Image(dir1.toUri().toURL().toExternalForm());
+            arrowRightBtn.setGraphic(new ImageView(image1));
             
             //Add movie
             String a = "Title \t\t\t\t\t\t\t Rating \t\t\t\t\t Lastview";
@@ -122,11 +143,18 @@ public class PrivateMovieCollectionController implements Initializable{
             movies.getItems().addAll(listMovie);
             
             //Add category
-            String b = "Categories";
+            String b = "All categories in PMC";
             listCategory.add(b);
             List<Category> listc = bll.getAllCategories();
             listCategory.addAll(listc);
             categories.getItems().addAll(listCategory);
+            
+            //Add categories to a movie
+            String c = "Categories in movie";
+            listCatsInMovie.add(c);
+            List<String> list = be.getCategoriesList();
+            listCatsInMovie.add(list);
+            categoriesInMovie.getItems().addAll(listCatsInMovie);
             
         }catch (MalformedURLException ex){
             ex.printStackTrace();
@@ -160,5 +188,17 @@ public class PrivateMovieCollectionController implements Initializable{
         Movie selected =
                 movies.getSelectionModel().getSelectedItem();
         openAddEditMovieWindow(e, selected);
+    }
+    
+    @FXML
+    private void findInSearch(ActionEvent e){
+        List<Movie> mov = bll.getAllMovies();
+        movies.getItems().clear();
+        
+        for(Movie movie : mov){
+            if(movie.getName().contains(searchFld.getText())){
+                movies.getItems().add(movie);
+            }
+        }
     }
 }
