@@ -8,6 +8,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -135,14 +136,16 @@ public class CatMovieDAO {
         
         List<CatMovie> cmov = new ArrayList();
         try(Connection conn = ds.getConnection()){
-            String sqlStatement = "SELECT * FROM CatMovie";
+            String sqlStatement = "SELECT id, name, "
+            +"categories FROM Movie INNER JOIN CatMovie"
+               +" ON Movie.id = CatMovie.movieId";
             Statement statement = conn.createStatement();
             ResultSet rs = statement.executeQuery(sqlStatement);
             while(rs.next()){
-                int id = rs.getInt("id");
-                int categoryId = rs.getInt("categoryId");
-                int movieId = rs.getInt("movieId");
-                CatMovie cm = new CatMovie(id, categoryId, movieId);
+                int ids = rs.getInt("id");
+                String name = rs.getString("name");
+                String categories = rs.getString("categories");
+                CatMovie cm = new CatMovie(ids, name, Arrays.asList(categories));
                 cmov.add(cm);
             }
         }catch(SQLServerException ex){

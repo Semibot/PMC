@@ -34,15 +34,16 @@ public class MovieDAO{
     public Movie createMovie(int id, Movie m) throws SQLException{
         
         try(Connection conn = ds.getConnection()){
-            String sql = "INSERT INTO Movie(name, rating,"
-                 + " lastview, filelink, categories) VALUES(?,?,?,?,?)";
+            String sql = "INSERT INTO Movie(name, personalRating,"
+            +" imdbRating, lastview, filelink, categories) VALUES(?,?,?,?,?,?)";
             PreparedStatement stmt = conn.prepareStatement(sql,
                     Statement.RETURN_GENERATED_KEYS);
             stmt.setString(1, m.getName());
-            stmt.setInt(2, m.getRating());
-            stmt.setString(3, m.getLastview());
-            stmt.setString(4, m.getFilelink());
-            stmt.setString(5, String.valueOf(m.getCategoriesList()));
+            stmt.setInt(2, m.getPersonalRating());
+            stmt.setInt(3, m.getImdbRating());
+            stmt.setString(4, m.getLastview());
+            stmt.setString(5, m.getFilelink());
+            stmt.setString(6, String.valueOf(m.getCategoriesList()));
             
             int createdRows = stmt.executeUpdate();
             
@@ -72,12 +73,13 @@ public class MovieDAO{
             while(rs.next()){
                 int ids = rs.getInt("id");
                 String name = rs.getString("name");
-                int rating = rs.getInt("rating");
-                String listview = rs.getString("listview");
+                int personalRating = rs.getInt("personalRating");
+                int imdbRating = rs.getInt("imdbRating");
+                String lastview = rs.getString("lastview");
                 String filelink = rs.getString("filelink");
                 String categories = rs.getString("categories");
-                Movie m = new Movie(ids, name, rating,
-                listview, filelink, Arrays.asList(categories));
+                Movie m = new Movie(ids, name, personalRating,
+                imdbRating, lastview, filelink, Arrays.asList(categories));
                 return m;
             }
         }catch(SQLServerException ex){
@@ -149,12 +151,13 @@ public class MovieDAO{
             while(rs.next()){
                 int id = rs.getInt("id");
                 String name = rs.getString("name");
-                int rating = rs.getInt("rating");
+                int personalRating = rs.getInt("personalRating");
+                int imdbRating = rs.getInt("imdbRating");
                 String lastview = rs.getString("lastview");
                 String filelink = rs.getString("filelink");
                 String categories = rs.getString("categories");
-                Movie m = new Movie(id, name, rating,
-                        lastview, filelink, Arrays.asList(categories));
+                Movie m = new Movie(id, name, personalRating,
+                 imdbRating, lastview, filelink, Arrays.asList(categories));
                 mov.add(m);
             }
         }catch(SQLServerException ex){

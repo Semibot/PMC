@@ -9,7 +9,8 @@ import java.util.List;
 public class Movie{
     private int id;
     private String name;
-    private int rating;
+    private int personalRating;
+    private int imdbRating;
     private String filelink;
     private String lastview;
     private List<String> categoriesList;
@@ -18,11 +19,12 @@ public class Movie{
         
     }
     
-    public Movie(int id, String name, int rating,
-            String lastview, String filelink, List<String> categoriesList){
+    public Movie(int id, String name, int personalRating,
+            int imdbRating, String lastview, String filelink, List<String> categoriesList){
         this.id = id;
         this.name = name;
-        this.rating = rating;
+        this.personalRating = personalRating;
+        this.imdbRating = imdbRating;
         this.lastview = lastview;
         this.filelink = filelink;
         this.categoriesList = categoriesList;
@@ -30,8 +32,8 @@ public class Movie{
     
     @Override
     public String toString(){
-        return name + "\t\t\t\t\t" + rating +
-                "\t\t\t\t\t\t" + lastview;
+        return name +"\t\t\t\t"+ imdbRating +"\t\t\t"+
+          personalRating +"\t\t\t\t" + lastview;
     }
 
     public int getId(){
@@ -50,12 +52,20 @@ public class Movie{
         this.name = name;
     }
 
-    public int getRating(){
-        return rating;
+    public int getPersonalRating(){
+        return personalRating;
     }
 
-    public void setRating(int rating){
-        this.rating = rating;
+    public void setPersonalRating(int personalRating){
+        this.personalRating = personalRating;
+    }
+    
+    public int getImdbRating(){
+        return imdbRating;
+    }
+    
+    public void setImdbRating(int imdbRating){
+        this.imdbRating = imdbRating;
     }
 
     public String getFilelink(){

@@ -2,6 +2,15 @@ package privatemoviecollection.bll;
 
 import java.sql.SQLException;
 import java.util.List;
+import javafx.geometry.Pos;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import privatemoviecollection.be.CatMovie;
 import privatemoviecollection.be.Category;
 import privatemoviecollection.be.Movie;
@@ -88,5 +97,30 @@ public class PMCLogic{
     public List<CatMovie> getAllCatMovies(){
         CatMovieDAO cmdao = new CatMovieDAO();
         return cmdao.getAllCatMovies();
+    }
+    
+    public void alertBox(){
+        Stage abWindow = new Stage();
+        
+        abWindow.initModality(Modality.APPLICATION_MODAL);
+        abWindow.setTitle("AlertBox");
+        abWindow.setMinWidth(550);
+        abWindow.setMinHeight(300);
+        
+        Label abLbl = new Label();
+        abLbl.setFont(Font.font(null, FontWeight.BOLD, 16));
+        abLbl.setText("Remember to delete movies, "+
+           "that have a personal rating below 6\nand "+
+             "have not been watched in over 2 years.");
+        Button closeBtn = new Button("Close the window");
+        closeBtn.setOnAction(e -> abWindow.close());
+        
+        VBox abLayout = new VBox(10);
+        abLayout.getChildren().addAll(abLbl, closeBtn);
+        abLayout.setAlignment(Pos.CENTER);
+        
+        Scene scene = new Scene(abLayout);
+        abWindow.setScene(scene);
+        abWindow.showAndWait();
     }
 }

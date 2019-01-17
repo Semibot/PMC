@@ -28,7 +28,9 @@ public class NewEditMovieController implements Initializable{
     @FXML
     private TextField movieNameFld;
     @FXML
-    private TextField movieRatingFld;
+    private TextField moviePersonalRatingFld;
+    @FXML
+    private TextField movieImdbRatingFld;
     @FXML
     private TextField movieLastviewFld;
     @FXML
@@ -63,14 +65,13 @@ public class NewEditMovieController implements Initializable{
     }
     
     @FXML
-    private void addToMovieBtn(ActionEvent e, Movie selected){
+    private void addToMovieBtn(ActionEvent e){
         List<String> sList = new ArrayList<>();
         
         if(selected != null){
-            
-        }
-        for(String s : sList){
-            be.getCategoriesList().add(s + genres.getValue());
+            for(String s : sList){
+                be.getCategoriesList().add(s + genres.getValue());
+            }
         }
         
         parent.getCategoriesInMovie().getItems().clear();
@@ -80,8 +81,10 @@ public class NewEditMovieController implements Initializable{
     
     @FXML
     private void handleSaveMovieButton(ActionEvent e){
-        Movie m = new Movie(0, movieNameFld.getText(),
-                Integer.parseInt(movieRatingFld.getText()),
+        if(!movieNameFld.getText().equals(be.getName())){
+            Movie m = new Movie(0, movieNameFld.getText(),
+                Integer.parseInt(moviePersonalRatingFld.getText()),
+                Integer.parseInt(movieImdbRatingFld.getText()),
                 //String.valueOf((List<String>)genres.getValue()),
                 movieLastviewFld.getText(),
                 movieFilelinkFld.getText(),
@@ -89,6 +92,12 @@ public class NewEditMovieController implements Initializable{
                 //be.getCategoriesList(genres.getValue())
         );
         parent.addMovie(m);
+        }else {
+            parent.addMovie(null);
+            parent.getInfoLbl().setText(
+                    movieNameFld.getText()+
+                        " Already exists in PMC.");
+        }
         Stage sm = (Stage)movieSaveBtn.getScene().getWindow();
         sm.close();
     }
@@ -103,7 +112,8 @@ public class NewEditMovieController implements Initializable{
         this.selected = selected;
         if(selected != null){
             movieNameFld.setText(selected.getName());
-            movieRatingFld.setText(String.valueOf(selected.getRating()));
+            moviePersonalRatingFld.setText(String.valueOf(selected.getPersonalRating()));
+            movieImdbRatingFld.setText(String.valueOf(selected.getImdbRating()));
             movieLastviewFld.setText(selected.getLastview());
             movieFilelinkFld.setText(selected.getFilelink());
         }
