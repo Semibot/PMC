@@ -140,7 +140,7 @@ public class PrivateMovieCollectionController implements Initializable{
         
         if(selected != null){
             for(String s : sList){
-                be.getCategoriesList().add(s);
+                be.setCategoriesList(s);
                 categoriesInMovie.getItems().add(s);
             }
         }
@@ -221,7 +221,7 @@ public class PrivateMovieCollectionController implements Initializable{
             });
             
             //Add category
-            String b = "All categories in PMC";
+            String b = "Categories in PMC";
             listCategory.add(b);
             List<Category> listc = bll.getAllCategories();
             listCategory.addAll(listc);
@@ -230,8 +230,8 @@ public class PrivateMovieCollectionController implements Initializable{
             //Add categories to a movie
             String c = "Categories in movie";
             listCatsInMovie.add(c);
-            List<String> list = be.getCategoriesList();
-            listCatsInMovie.add(list);
+            String listcm = be.getCategoriesList();
+            listCatsInMovie.add(listcm);
             categoriesInMovie.getItems().addAll(listCatsInMovie);
             
         }catch (MalformedURLException ex){

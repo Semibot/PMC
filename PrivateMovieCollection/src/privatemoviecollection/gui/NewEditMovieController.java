@@ -70,7 +70,7 @@ public class NewEditMovieController implements Initializable{
         
         if(selected != null){
             for(String s : sList){
-                be.getCategoriesList().add(s + genres.getValue());
+                be.setCategoriesList(s);
             }
         }
         
@@ -88,8 +88,7 @@ public class NewEditMovieController implements Initializable{
                 //String.valueOf((List<String>)genres.getValue()),
                 movieLastviewFld.getText(),
                 movieFilelinkFld.getText(),
-                (List<String>)genres.getValue()
-                //be.getCategoriesList(genres.getValue())
+                be.getCategoriesList()
         );
         parent.addMovie(m);
         }else {

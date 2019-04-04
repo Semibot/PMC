@@ -8,7 +8,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -43,7 +42,7 @@ public class MovieDAO{
             stmt.setInt(3, m.getImdbRating());
             stmt.setString(4, m.getLastview());
             stmt.setString(5, m.getFilelink());
-            stmt.setString(6, String.valueOf(m.getCategoriesList()));
+            stmt.setString(6, m.getCategoriesList());
             
             int createdRows = stmt.executeUpdate();
             
@@ -77,9 +76,9 @@ public class MovieDAO{
                 int imdbRating = rs.getInt("imdbRating");
                 String lastview = rs.getString("lastview");
                 String filelink = rs.getString("filelink");
-                String categories = rs.getString("categories");
+                String categoriesList = rs.getString("categories");
                 Movie m = new Movie(ids, name, personalRating,
-                imdbRating, lastview, filelink, Arrays.asList(categories));
+                imdbRating, lastview, filelink, categoriesList);
                 return m;
             }
         }catch(SQLServerException ex){
@@ -155,9 +154,9 @@ public class MovieDAO{
                 int imdbRating = rs.getInt("imdbRating");
                 String lastview = rs.getString("lastview");
                 String filelink = rs.getString("filelink");
-                String categories = rs.getString("categories");
+                String categoriesList = rs.getString("categories");
                 Movie m = new Movie(id, name, personalRating,
-                 imdbRating, lastview, filelink, Arrays.asList(categories));
+                 imdbRating, lastview, filelink, categoriesList);
                 mov.add(m);
             }
         }catch(SQLServerException ex){

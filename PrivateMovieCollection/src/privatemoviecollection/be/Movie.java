@@ -1,5 +1,6 @@
 package privatemoviecollection.be;
 
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -20,14 +21,14 @@ public class Movie{
     }
     
     public Movie(int id, String name, int personalRating,
-            int imdbRating, String lastview, String filelink, List<String> categoriesList){
+            int imdbRating, String lastview, String filelink, String categoriesList){
         this.id = id;
         this.name = name;
         this.personalRating = personalRating;
         this.imdbRating = imdbRating;
         this.lastview = lastview;
         this.filelink = filelink;
-        this.categoriesList = categoriesList;
+        this.categoriesList = Arrays.asList(categoriesList.split("_"));
     }
     
     @Override
@@ -84,11 +85,14 @@ public class Movie{
         this.lastview = lastview;
     }
     
-    public List<String> getCategoriesList(){
-        return categoriesList;
+    public String getCategoriesList(){
+        String result = "";
+        for(String categorieslist : categoriesList)
+            result += categorieslist + "_";
+        return result.substring(0, result.length() - 1);
     }
     
-    public void setCategoriesList(List<String> categoriesList){
-        this.categoriesList = categoriesList;
+    public void setCategoriesList(String categoriesList){
+        this.categoriesList = Arrays.asList(categoriesList.split("_"));
     }
 }

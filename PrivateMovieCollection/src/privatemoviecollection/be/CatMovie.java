@@ -18,10 +18,11 @@ public class CatMovie{
         this.movieId = movieId;
     }
     
-    public CatMovie (int id, String name, List<String> categories){
+    public CatMovie(int id, String name, String categoriesList){
         m = new Movie();
+        this.id = id;
         //m.getName() = name;
-        //m.getCategoriesList() = categories;
+        //m.getCategoriesList() = categoriesList;
     }
     
     public int getId(){

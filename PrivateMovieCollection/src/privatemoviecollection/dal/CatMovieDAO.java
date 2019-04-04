@@ -144,8 +144,8 @@ public class CatMovieDAO {
             while(rs.next()){
                 int ids = rs.getInt("id");
                 String name = rs.getString("name");
-                String categories = rs.getString("categories");
-                CatMovie cm = new CatMovie(ids, name, Arrays.asList(categories));
+                String categoriesList = rs.getString("categories");
+                CatMovie cm = new CatMovie(ids, name, categoriesList);
                 cmov.add(cm);
             }
         }catch(SQLServerException ex){
