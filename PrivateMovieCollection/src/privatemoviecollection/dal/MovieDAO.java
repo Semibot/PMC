@@ -164,7 +164,7 @@ public class MovieDAO{
             Statement statement = conn.createStatement();
             ResultSet rs = statement.executeQuery(sqlStatement);
             while(rs.next()){
-                int ids = rs.getInt("id");
+                int id = rs.getInt("id");
                 String name = rs.getString("name");
                 int personalRating = rs.getInt("personalRating");
                 int imdbRating = rs.getInt("imdbRating");
@@ -172,7 +172,7 @@ public class MovieDAO{
                 String filelink = rs.getString("filelink");
 <<<<<<< HEAD
                 String categoriesList = rs.getString("categories");
-                Movie m = new Movie(ids, name, personalRating,
+                Movie m = new Movie(id, name, personalRating,
                  imdbRating, lastview, filelink, categoriesList);
 =======
                 Movie m = new Movie(id, name, rating,

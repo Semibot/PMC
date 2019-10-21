@@ -48,14 +48,21 @@ public class PrivateMovieCollectionController implements Initializable{
     private ObservableList listCategory = FXCollections.observableArrayList();
 <<<<<<< HEAD
     private ObservableList listCatsInMovie = FXCollections.observableArrayList();
-    @FXML private Button searchBtn;
-    @FXML private Button arrowRightBtn;
-    @FXML private Label infoLbl;
-    @FXML private ListView<Movie> movies;
-    @FXML private ListView<Category> categories;
-    @FXML private ListView<String> categoriesInMovie;
-    @FXML private TextField searchFld;
+    @FXML
+    private Button searchBtn;
+    @FXML
+    private Button arrowRightBtn;
+    @FXML
+    private Label infoLbl;
+    @FXML
+    private ListView<Movie> movies;
+    @FXML
+    private ListView<Category> categories;
+    @FXML
+    private ListView<String> categoriesInMovie;
     private PMCLogic bll;
+    @FXML
+    private TextField searchFld;
     private Movie selected = null;
     private Movie be;
     private PMCMediaController pmcmc;
