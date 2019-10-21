@@ -8,7 +8,11 @@
   </information>
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
+<<<<<<< HEAD
     <jar href="PrivateMovieCollection.jar" size="47424" download="eager" />
+=======
+    <jar href="PrivateMovieCollection.jar" size="21733" download="eager" />
+>>>>>>> parent of 145f406... Add files via upload
     <jar href="lib\sqljdbc42.jar" size="653996" download="eager" />
   </resources>
   <applet-desc  width="800" height="600" main-class="com.javafx.main.NoJavaFXFallback"  name="PrivateMovieCollection" >

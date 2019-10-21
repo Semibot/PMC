@@ -33,6 +33,7 @@ public class MovieDAO{
     public Movie createMovie(int id, Movie m) throws SQLException{
         
         try(Connection conn = ds.getConnection()){
+<<<<<<< HEAD
             String sql = "INSERT INTO Movie(name, personalRating,"
             +" imdbRating, lastview, filelink, categories) VALUES(?,?,?,?,?,?)";
             PreparedStatement stmt = conn.prepareStatement(sql,
@@ -43,6 +44,16 @@ public class MovieDAO{
             stmt.setString(4, m.getLastview());
             stmt.setString(5, m.getFilelink());
             stmt.setString(6, m.getCategoriesList());
+=======
+            String sql = "INSERT INTO Movie(name, rating,"
+                 + " lastview, filelink) VALUES(?,?,?,?)";
+            PreparedStatement stmt = conn.prepareStatement(sql,
+                    Statement.RETURN_GENERATED_KEYS);
+            stmt.setString(1, m.getName());
+            stmt.setInt(2, m.getRating());
+            stmt.setString(3, m.getLastview());
+            stmt.setString(4, m.getFilelink());
+>>>>>>> parent of 145f406... Add files via upload
             
             int createdRows = stmt.executeUpdate();
             
@@ -76,9 +87,14 @@ public class MovieDAO{
                 int imdbRating = rs.getInt("imdbRating");
                 String lastview = rs.getString("lastview");
                 String filelink = rs.getString("filelink");
+<<<<<<< HEAD
                 String categoriesList = rs.getString("categories");
                 Movie m = new Movie(ids, name, personalRating,
                 imdbRating, lastview, filelink, categoriesList);
+=======
+                Movie m = new Movie(ids, name, rating,
+                listview, filelink);
+>>>>>>> parent of 145f406... Add files via upload
                 return m;
             }
         }catch(SQLServerException ex){
@@ -154,9 +170,14 @@ public class MovieDAO{
                 int imdbRating = rs.getInt("imdbRating");
                 String lastview = rs.getString("lastview");
                 String filelink = rs.getString("filelink");
+<<<<<<< HEAD
                 String categoriesList = rs.getString("categories");
                 Movie m = new Movie(ids, name, personalRating,
                  imdbRating, lastview, filelink, categoriesList);
+=======
+                Movie m = new Movie(id, name, rating,
+                        lastview, filelink);
+>>>>>>> parent of 145f406... Add files via upload
                 mov.add(m);
             }
         }catch(SQLServerException ex){

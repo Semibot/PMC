@@ -1,8 +1,11 @@
 package privatemoviecollection.be;
 
+<<<<<<< HEAD
 import java.util.Arrays;
 import java.util.List;
 
+=======
+>>>>>>> parent of 145f406... Add files via upload
 /**
  *
  * @author DKE
@@ -14,21 +17,24 @@ public class Movie{
     private int imdbRating;
     private String filelink;
     private String lastview;
-    private List<String> categoriesList;
     
-    public Movie(){
-        
-    }
-    
+<<<<<<< HEAD
     public Movie(int id, String name, int personalRating,
             int imdbRating, String lastview, String filelink, String categoriesList){
+=======
+    public Movie(int id, String name, int rating,
+            String lastview, String filelink){
+>>>>>>> parent of 145f406... Add files via upload
         this.id = id;
         this.name = name;
         this.personalRating = personalRating;
         this.imdbRating = imdbRating;
         this.lastview = lastview;
         this.filelink = filelink;
+<<<<<<< HEAD
         this.categoriesList = Arrays.asList(categoriesList.split("_"));
+=======
+>>>>>>> parent of 145f406... Add files via upload
     }
     
     @Override
@@ -84,6 +90,7 @@ public class Movie{
     public void setLastview(String lastview){
         this.lastview = lastview;
     }
+<<<<<<< HEAD
     
     public String getCategoriesList(){
         String result = "";
@@ -95,4 +102,6 @@ public class Movie{
     public void setCategoriesList(String categoriesList){
         this.categoriesList = Arrays.asList(categoriesList.split("_"));
     }
+=======
+>>>>>>> parent of 145f406... Add files via upload
 }

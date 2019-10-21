@@ -10,8 +10,11 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.ResourceBundle;
+<<<<<<< HEAD
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+=======
+>>>>>>> parent of 145f406... Add files via upload
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -43,6 +46,7 @@ import privatemoviecollection.bll.PMCLogic;
 public class PrivateMovieCollectionController implements Initializable{
     private ObservableList listMovie = FXCollections.observableArrayList();
     private ObservableList listCategory = FXCollections.observableArrayList();
+<<<<<<< HEAD
     private ObservableList listCatsInMovie = FXCollections.observableArrayList();
     @FXML private Button searchBtn;
     @FXML private Button arrowRightBtn;
@@ -73,6 +77,20 @@ public class PrivateMovieCollectionController implements Initializable{
     
     public ObservableList getListCatsInMovie(){
         return listCatsInMovie;
+=======
+    @FXML
+    private Button searchBtn;
+    @FXML
+    private ListView<Movie> movies;
+    @FXML
+    private ListView<Category> categories;
+    private PMCLogic bll;
+    @FXML
+    private TextField searchFld;
+    
+    public PrivateMovieCollectionController(){
+        bll = new PMCLogic();
+>>>>>>> parent of 145f406... Add files via upload
     }
     
     @FXML
@@ -120,7 +138,7 @@ public class PrivateMovieCollectionController implements Initializable{
             categories.getItems().clear();
             listCategory.addAll(category);
             categories.getItems().addAll(listCategory);
-        }catch (SQLException ex){
+        } catch (SQLException ex) {
             ex.printStackTrace();
         }
     }
@@ -180,15 +198,15 @@ public class PrivateMovieCollectionController implements Initializable{
     @Override
     public void initialize(URL url, ResourceBundle rb){
         try {
+<<<<<<< HEAD
             bll.alertBox();
             //Set image on buttons
+=======
+            //Set image search button
+>>>>>>> parent of 145f406... Add files via upload
             Path dir = FileSystems.getDefault().getPath("./src/images/Search-icon.png");
             Image image = new Image(dir.toUri().toURL().toExternalForm());
             searchBtn.setGraphic(new ImageView(image));
-            
-            Path dir1 = FileSystems.getDefault().getPath("./src/images/Arrow-right.png");
-            Image image1 = new Image(dir1.toUri().toURL().toExternalForm());
-            arrowRightBtn.setGraphic(new ImageView(image1));
             
             //Add movie
             String a = "Title \t\t\t\t\t PersRating \t   ImdbRating \t\t\t Lastview";
@@ -214,12 +232,17 @@ public class PrivateMovieCollectionController implements Initializable{
             });
             
             //Add category
+<<<<<<< HEAD
             String b = "Categories in PMC";
+=======
+            String b = "Categories";
+>>>>>>> parent of 145f406... Add files via upload
             listCategory.add(b);
             List<Category> listc = bll.getAllCategories();
             listCategory.addAll(listc);
             categories.getItems().addAll(listCategory);
             
+<<<<<<< HEAD
             //Add categories to a movie
             String c = "Categories in movie";
             listCatsInMovie.add(c);
@@ -227,6 +250,8 @@ public class PrivateMovieCollectionController implements Initializable{
             listCatsInMovie.add(listcm);
             categoriesInMovie.getItems().addAll(listCatsInMovie);
             
+=======
+>>>>>>> parent of 145f406... Add files via upload
         }catch (MalformedURLException ex){
             ex.printStackTrace();
         }
@@ -260,6 +285,7 @@ public class PrivateMovieCollectionController implements Initializable{
                 movies.getSelectionModel().getSelectedItem();
         openAddEditMovieWindow(e, selected);
     }
+<<<<<<< HEAD
     
     @FXML
     private void findInSearch(ActionEvent e){
@@ -281,4 +307,6 @@ public class PrivateMovieCollectionController implements Initializable{
             }
         }
     }
+=======
+>>>>>>> parent of 145f406... Add files via upload
 }

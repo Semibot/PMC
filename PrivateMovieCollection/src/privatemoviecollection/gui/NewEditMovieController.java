@@ -1,8 +1,6 @@
 package privatemoviecollection.gui;
 
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -11,6 +9,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.ListView;
+import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import privatemoviecollection.be.Category;
@@ -39,17 +39,14 @@ public class NewEditMovieController implements Initializable{
     private Button movieSaveBtn;
     @FXML
     private Button movieCancelBtn;
-    @FXML
-    private Button addToMovieBtn;
     private PMCLogic bll;
-    private Movie be;
     @FXML
     private ComboBox<Category> genres;
     private Movie selected = null;
+    private ListView<Category> categories;
     
     public NewEditMovieController(){
         bll = new PMCLogic();
-        be = new Movie();
     }
     
     public void setParentWindowController(PrivateMovieCollectionController parent){
@@ -65,6 +62,7 @@ public class NewEditMovieController implements Initializable{
     }
     
     @FXML
+<<<<<<< HEAD
     private void addToMovieBtn(ActionEvent e){
         List<String> sList = new ArrayList<>();
         
@@ -90,6 +88,13 @@ public class NewEditMovieController implements Initializable{
                 movieFilelinkFld.getText(),
                 be.getCategoriesList()
         );
+=======
+    private void handleSaveMovieButton(ActionEvent e){
+        Movie m = new Movie(0, movieNameFld.getText(),
+                Integer.parseInt(movieRatingFld.getText()),
+                movieLastviewFld.getText(),
+                movieFilelinkFld.getText());
+>>>>>>> parent of 145f406... Add files via upload
         parent.addMovie(m);
         }else {
             parent.addMovie(null);

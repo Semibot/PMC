@@ -2,6 +2,7 @@ package privatemoviecollection.bll;
 
 import java.sql.SQLException;
 import java.util.List;
+<<<<<<< HEAD
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -12,9 +13,10 @@ import javafx.scene.text.FontWeight;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import privatemoviecollection.be.CatMovie;
+=======
+>>>>>>> parent of 145f406... Add files via upload
 import privatemoviecollection.be.Category;
 import privatemoviecollection.be.Movie;
-import privatemoviecollection.dal.CatMovieDAO;
 import privatemoviecollection.dal.CategoryDAO;
 import privatemoviecollection.dal.MovieDAO;
 
@@ -73,6 +75,7 @@ public class PMCLogic{
         CategoryDAO cdao = new CategoryDAO();
         return cdao.getAllCategories();
     }
+<<<<<<< HEAD
     
     public CatMovie createCatMovie(CatMovie cm) throws SQLException{
         CatMovieDAO cmdao = new CatMovieDAO();
@@ -123,4 +126,6 @@ public class PMCLogic{
         abWindow.setScene(scene);
         abWindow.showAndWait();
     }
+=======
+>>>>>>> parent of 145f406... Add files via upload
 }
