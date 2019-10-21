@@ -148,14 +148,14 @@ public class MovieDAO{
             Statement statement = conn.createStatement();
             ResultSet rs = statement.executeQuery(sqlStatement);
             while(rs.next()){
-                int id = rs.getInt("id");
+                int ids = rs.getInt("id");
                 String name = rs.getString("name");
                 int personalRating = rs.getInt("personalRating");
                 int imdbRating = rs.getInt("imdbRating");
                 String lastview = rs.getString("lastview");
                 String filelink = rs.getString("filelink");
                 String categoriesList = rs.getString("categories");
-                Movie m = new Movie(id, name, personalRating,
+                Movie m = new Movie(ids, name, personalRating,
                  imdbRating, lastview, filelink, categoriesList);
                 mov.add(m);
             }
